@@ -1,0 +1,41 @@
+description: >
+  This command triggers CircleCI pipeline specified.
+  The job execution environment must have cURL utility available
+# What will this command do?
+# Descriptions should be short, simple, and clear.
+parameters:
+  repo-name:
+    type: string
+    description: "Repo name to trigger pipeline for"
+
+  branch-name: 
+    type: string
+    default: main
+    description: "Branch name to trigger"
+
+  trigger-params-json:
+    type: string
+    default: "{}"
+    description: Pipeline trigger parameters in JSON format
+
+  circle-token-env-var: 
+    name: Environment variable containing your CircleCI API Key. Default is $CIRCLECI_API_KEY
+    type: environment
+    default: $CIRCLECI_API_KEY
+  
+
+    
+steps:
+  - run: 
+      name: Run cURL request
+      command: |
+          curl --request POST \
+              --url 'https://circleci.com/api/v2/project/gh/"$CIRCLE_PROJECT_USERNAME"/"<< parameters.repo-name >>"/pipeline' \
+              --header "Circle-Token: $CIRCLECI_API_KEY" \
+              --header "content-type: application/json" \
+              --data  << parameters.trigger-params-json >>
+  - run:
+      environment:
+        PARAM_TO: <<parameters.to>>
+      name: Hello Greeting
+      command: <<include(scripts/greet.sh)>>
