@@ -1,5 +1,5 @@
 description: >
- Job that trigger CircleCI pipeline in another project with the payload specified
+  Job that trigger CircleCI pipeline in another project with the payload specified
 # What will this job do?
 # Descriptions should be short, simple, and clear.
 
@@ -8,9 +8,9 @@ docker:
 
 parameters:
   repo-name:
-      type: string
-      description: "Repo name to trigger pipeline for"
-  branch-name: 
+    type: string
+    description: "Repo name to trigger pipeline for"
+  branch-name:
     type: string
     default: main
     description: "Branch name to trigger"
@@ -20,15 +20,14 @@ parameters:
     default: "{}"
     description: Pipeline trigger parameters in JSON format
 
-  circle-token-env-var: 
+  circle-token-env-var:
     name: Environment variable containing your CircleCI API Key. Default is $CIRCLECI_API_KEY
     type: environment
     default: $CIRCLECI_API_KEY
-  
+
 steps:
   - trigger-pipeline:
       repo-name: << parameters.repo-name >>
       branch-name: << parameters.branch-name >>
       trigger-params-json: << parameters.trigger-params-json >>
       circle-token-env-var: << parameters.circle-token-env-var >>
-  
