@@ -22,9 +22,7 @@ parameters:
     name: Environment variable containing your CircleCI API Key. Default is $CIRCLECI_API_KEY
     type: environment
     default: $CIRCLECI_API_KEY
-  
 
-    
 steps:
   - run: 
       name: Run cURL request
@@ -34,8 +32,3 @@ steps:
               --header "Circle-Token: $CIRCLECI_API_KEY" \
               --header "content-type: application/json" \
               --data  << parameters.trigger-params-json >>
-  - run:
-      environment:
-        PARAM_TO: <<parameters.to>>
-      name: Hello Greeting
-      command: <<include(scripts/greet.sh)>>

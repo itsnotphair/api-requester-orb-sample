@@ -3,7 +3,8 @@ description: >
 # What will this job do?
 # Descriptions should be short, simple, and clear.
 
-executor: default
+docker:
+  image: cimg/base:2021.12
 
 parameters:
   repo-name:
