@@ -21,7 +21,7 @@ parameters:
     description: Pipeline trigger parameters in JSON format
 
   circle-token-env-var:
-    type: environment
+    type: string
     default: $CIRCLECI_API_KEY
     description: Environment variable containing your CircleCI API Key. Default is $CIRCLECI_API_KEY
 
