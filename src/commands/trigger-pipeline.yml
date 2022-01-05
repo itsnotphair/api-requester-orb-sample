@@ -18,17 +18,17 @@ parameters:
     default: "{}"
     description: Pipeline trigger parameters in JSON format
 
-  circle-token-env-var: 
+  circle-token-env-var:
     type: string
     default: $CIRCLECI_API_KEY
     description: Environment variable containing your CircleCI API Key. Default is $CIRCLECI_API_KEY
 
 steps:
-  - run: 
+  - run:
       name: Run cURL request
       command: |
-          curl --request POST \
-              --url 'https://circleci.com/api/v2/project/gh/"$CIRCLE_PROJECT_USERNAME"/"<< parameters.repo-name >>"/pipeline' \
-              --header "Circle-Token: $CIRCLECI_API_KEY" \
-              --header "content-type: application/json" \
-              --data  << parameters.trigger-params-json >>
+        curl --request POST \
+            --url 'https://circleci.com/api/v2/project/gh/"$CIRCLE_PROJECT_USERNAME"/"<< parameters.repo-name >>"/pipeline' \
+            --header "Circle-Token: $CIRCLECI_API_KEY" \
+            --header "content-type: application/json" \
+            --data  << parameters.trigger-params-json >>
