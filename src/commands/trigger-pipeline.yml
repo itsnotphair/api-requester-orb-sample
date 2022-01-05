@@ -20,7 +20,7 @@ parameters:
 
   circle-token-env-var:
     type: string
-    default: $CIRCLECI_API_KEY
+    default: CIRCLECI_API_KEY
     description: Environment variable containing your CircleCI API Key. Default is $CIRCLECI_API_KEY
 
 steps:
@@ -29,6 +29,6 @@ steps:
       command: |
         curl --request POST \
             --url 'https://circleci.com/api/v2/project/gh/"$CIRCLE_PROJECT_USERNAME"/"<< parameters.repo-name >>"/pipeline' \
-            --header "Circle-Token: $CIRCLECI_API_KEY" \
+            --header "Circle-Token: $<< parameters.circle-token-env-var >>" \
             --header "content-type: application/json" \
-            --data  << parameters.trigger-params-json >>
+            --data '{"branch":"'<< parameters.branch-name >>'","parameters":'<< trigger-params-json >>'}"
