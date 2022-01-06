@@ -35,7 +35,7 @@ jobs:
       - api-requester-orb-sample/trigger-pipeline:
           repo-name: pinging-me-softly
           branch-name: main
-          trigger-params-json: '{"message": "Hello from CircleCI!"}'
+          trigger-params-json: '{"image-name": "cimg/base:2021.12"}'
 
 workflows:
   # Prior to producing a development orb (which requires credentials) basic validation, linting, and even unit testing can be performed.
