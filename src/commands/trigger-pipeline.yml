@@ -27,12 +27,8 @@ steps:
   - run:
       name: Run cURL request
       command: |
-        url="https://circleci.com/api/v2/project/gh/${CIRCLE_PROJECT_USERNAME}/<< parameters.repo-name >>/pipeline"
-        echo $url
-        token_header="Circle-Token: ${<< parameters.circle-token-env-var >>}"
-        echo $token_header
         curl --request POST \
-            --url $url \
+            --url "https://circleci.com/api/v2/project/gh/${CIRCLE_PROJECT_USERNAME}/<< parameters.repo-name >>/pipeline" \
             --header "Circle-Token: ${<< parameters.circle-token-env-var >>}" \
             --header "content-type: application/json" \
             --data '{"branch":"<< parameters.branch-name >>","parameters":<< parameters.trigger-params-json >>}"'
