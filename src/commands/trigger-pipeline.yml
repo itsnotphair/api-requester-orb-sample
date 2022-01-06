@@ -20,7 +20,7 @@ parameters:
 
   circle-token-env-var:
     type: env_var_name
-    default: CIRCLECI_API_KEY
+    default: CIRCLE_TOKEN
     description: Environment variable containing your CircleCI API Key. Default is $CIRCLECI_API_KEY
 
 steps:
